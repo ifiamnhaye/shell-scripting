@@ -40,6 +40,7 @@ do
     echo "$fruit"
 done
 ```
+[Code with inline comments click here](md/for_loop_inline_comments.sh)
 
 Output:
 

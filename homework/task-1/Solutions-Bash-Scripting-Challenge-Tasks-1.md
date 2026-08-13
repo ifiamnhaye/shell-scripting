@@ -451,62 +451,95 @@ install_packages.sh
 
 # Title: Cross-Distribution Package Installer
 # Purpose: Install nginx, curl, and wget when they are missing.
+# Supported systems: Debian/Ubuntu and RHEL-family distributions
 # Usage: sudo ./install_packages.sh
 
+# Check for root privileges.
 if (( EUID != 0 )); then
     echo "Error: run this script with sudo." >&2
     echo "Usage: sudo $0" >&2
     exit 1
 fi
 
+# Packages that should be installed.
 packages=("nginx" "curl" "wget")
+
+# This flag records whether any installation fails.
 installation_failed=0
 
+# Detect Debian/Ubuntu.
 if command -v dpkg >/dev/null 2>&1 &&
    command -v apt-get >/dev/null 2>&1; then
 
     distribution_family="Debian/Ubuntu"
 
+    echo "Detected system family: $distribution_family"
+    echo "Refreshing APT package information..."
+
+    # Refresh the APT package index once.
+    if ! apt-get update; then
+        echo "Error: could not refresh APT package information." >&2
+        exit 1
+    fi
+
+    # Check whether a Debian package is installed.
     is_installed()
     {
         dpkg -s "$1" >/dev/null 2>&1
     }
 
+    # Install a Debian package.
     install_package()
     {
-        DEBIAN_FRONTEND=noninteractive apt-get install -y -- "$1"
+        DEBIAN_FRONTEND=noninteractive \
+            apt-get install -y -- "$1"
     }
 
+# Detect a RHEL-family system.
 elif command -v rpm >/dev/null 2>&1; then
 
     distribution_family="RHEL"
 
+    # Select DNF or Yum.
     if command -v dnf >/dev/null 2>&1; then
         install_command=("dnf" "install" "-y")
+        refresh_command=("dnf" "makecache")
     elif command -v yum >/dev/null 2>&1; then
         install_command=("yum" "install" "-y")
+        refresh_command=("yum" "makecache")
     else
         echo "Error: neither dnf nor yum is available." >&2
         exit 1
     fi
 
+    echo "Detected system family: $distribution_family"
+    echo "Refreshing repository metadata..."
+
+    # Refresh the repository metadata once.
+    if ! "${refresh_command[@]}"; then
+        echo "Error: could not refresh repository metadata." >&2
+        exit 1
+    fi
+
+    # Check whether an RPM package is installed.
     is_installed()
     {
         rpm -q "$1" >/dev/null 2>&1
     }
 
+    # Install an RPM package.
     install_package()
     {
         "${install_command[@]}" "$1"
     }
 
+# Stop if no supported package manager was found.
 else
     echo "Error: supported package-management tools were not found." >&2
     exit 1
 fi
 
-echo "Detected system family: $distribution_family"
-
+# Check and install each package.
 for package in "${packages[@]}"
 do
     if is_installed "$package"; then
@@ -524,6 +557,7 @@ do
     fi
 done
 
+# Report failure if any package could not be installed.
 if (( installation_failed != 0 )); then
     echo "Error: one or more packages could not be installed." >&2
     exit 1
@@ -532,6 +566,19 @@ fi
 echo "All packages are installed or were already present."
 exit 0
 ```
+
+## Different Levels of code:
+
+[Level 1: Beginner Level](md/install_packages_beginer.sh)
+>Focuses on clean readability, simple procedural logic, and step-by-step comments.
+
+[Level 2: Intermediate Level](md/install_packages_intermediate.sh)
+>Refines your original structure by using shell functions, proper error handling, batching missing packages, and running an initial apt-get update step.
+
+[Level 3: Advanced Level](md/install_packages_advanced.sh)
+>Production-ready script with strict Bash options (set -euo pipefail), dynamic OS detection (/etc/os-release), fallback managers (Arch pacman, Alpine apk, SLES zypper), dry-run mode, and logging.
+
+
 
 ## Explanation
 
@@ -668,6 +715,10 @@ set -e
 This asks Bash to exit after many unhandled command failures.
 
 It is not a replacement for clear error handling.
+
+['set -e' more information click here roman Urdu](./md/Shell_Scripting_Set_E_Roman_Urdu.md)
+
+['set -e' more information click here](./md/Shell_Scripting_Set_E_Study_Notes.md)
 
 ### Make directory creation repeatable
 

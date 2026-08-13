@@ -1,5 +1,14 @@
 # Bash Standard Streams and Error Redirection Study Notes
 
+Stream:
+- Stream data ke flow ka logical rasta hai—bilkul pipe ki tarah—jo input ya output ko ek jagah se doosri jagah le jata hai.
+
+- A stream is a logical path through which data flows—like a pipe—carrying input or output from one place to another.
+
+Bash mein command ka output ek raaste ke zariye terminal, file ya kisi doosri command tak jata hai. Is raaste ko stream kehte hain.
+
+Stream koi physical file ya folder nahi hoti. Yeh data bhejne ka logical channel hota hai.
+
 ## 1. Introduction
 
 Every Linux command normally works with three standard data streams:
