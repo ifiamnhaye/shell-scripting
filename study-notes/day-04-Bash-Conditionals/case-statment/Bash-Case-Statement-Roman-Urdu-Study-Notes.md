@@ -225,6 +225,9 @@ case "$answer" in
         ;;
 esac
 ```
+[For Detailed Explanation in roman Urdu Cliclk here](md/case_explanation_notes_roman_urdu.md)
+
+[For Detailed Explanation in Cliclk here](md/case_explanation_notes.md)
 
 ### Branch Behavior
 
