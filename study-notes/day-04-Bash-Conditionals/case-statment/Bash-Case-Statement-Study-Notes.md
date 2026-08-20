@@ -89,6 +89,8 @@ case → esac
 
 ## 4. Simple Yes-or-No Example
 
+**script name:** `yes_no_prompt.sh`
+
 ```bash
 #!/bin/bash
 
@@ -149,6 +151,8 @@ This pattern matches either lowercase `y` or uppercase `Y`.
 
 You may accept complete words too:
 
+**script name:** `yes_no_multiple_patterns.sh`
+
 ```bash
 case "$answer" in
     y|Y|yes|Yes|YES)
@@ -193,6 +197,8 @@ Place `*` last. If it appears first, it matches every value before Bash can reac
 ---
 
 ## 7. Service-Checker Example
+
+**script name:** `nginx_service_status_checker.sh`
 
 ```bash
 #!/bin/bash
@@ -248,6 +254,8 @@ The `case` decides whether the user requested a check. The nested `if` decides w
 
 ## 8. Menu Example
 
+**script name:** `system_information_menu.sh`
+
 ```bash
 #!/bin/bash
 
@@ -301,6 +309,8 @@ Bash `case` uses shell patterns, not regular expressions.
 
 ### File-Extension Example
 
+**script name:** `file_type_classifier.sh`
+
 ```bash
 case "$filename" in
     *.txt)
@@ -347,6 +357,8 @@ Both structures make decisions, but they are best suited to different tasks.
 
 ### `if` Version
 
+**script name:** `yes_no_if_example.sh`
+
 ```bash
 if [[ "$answer" == "y" || "$answer" == "Y" ]]; then
     echo "Yes"
@@ -358,6 +370,8 @@ fi
 ```
 
 ### Equivalent `case` Version
+
+**script name:** `yes_no_case_example.sh`
 
 ```bash
 case "$answer" in
@@ -393,6 +407,8 @@ Continue after esac
 
 A loop repeats:
 
+**script name:** `infinite_loop_demo.sh`
+
 ```bash
 while true
 do
@@ -402,6 +418,8 @@ done
 ```
 
 To create a repeated menu, combine both structures:
+
+**script name:** `service_action_menu.sh`
 
 ```bash
 while true
@@ -439,6 +457,8 @@ Here:
 A `case` statement normally produces the status of the last command executed in the selected branch. If no pattern matches and no default branch exists, the status is `0`.
 
 For clear script behavior, explicitly use appropriate statuses when finishing inside a branch:
+
+**script name:** `case_exit_status_demo.sh`
 
 ```bash
 case "$answer" in

@@ -89,6 +89,8 @@ case → esac
 
 ## 4. Simple Yes-or-No Example
 
+**script name:** `yes_no_prompt.sh`
+
 ```bash
 #!/bin/bash
 
@@ -149,6 +151,8 @@ Yeh lowercase `y` ya uppercase `Y` dono match karta hai.
 
 Complete words bhi accept kiye ja sakte hain:
 
+**script name:** `yes_no_multiple_patterns.sh`
+
 ```bash
 case "$answer" in
     y|Y|yes|Yes|YES)
@@ -193,6 +197,8 @@ empty answer
 ---
 
 ## 7. Service-Checker Example
+
+**script name:** `nginx_service_status_checker.sh`
 
 ```bash
 #!/bin/bash
@@ -247,6 +253,8 @@ esac
 
 ## 8. Menu Example
 
+**script name:** `system_information_menu.sh`
+
 ```bash
 #!/bin/bash
 
@@ -300,6 +308,8 @@ Bash `case` shell patterns use karta hai, regular expressions nahin.
 
 ### File-Extension Example
 
+**script name:** `file_type_classifier.sh`
+
 ```bash
 case "$filename" in
     *.txt)
@@ -350,6 +360,8 @@ Dono decisions banate hain, lekin mukhtalif situations mein useful hain.
 
 ### `if` Version
 
+**script name:** `yes_no_if_example.sh`
+
 ```bash
 if [[ "$answer" == "y" || "$answer" == "Y" ]]; then
     echo "Yes"
@@ -361,6 +373,8 @@ fi
 ```
 
 ### Equivalent `case` Version
+
+**script name:** `yes_no_case_example.sh`
 
 ```bash
 case "$answer" in
@@ -396,6 +410,8 @@ esac ke baad continue karo
 
 Loop commands ko repeat karta hai:
 
+**script name:** `infinite_loop_demo.sh`
+
 ```bash
 while true
 do
@@ -404,7 +420,50 @@ do
 done
 ```
 
+**script name:** `infinite_loop_with_tip.sh`
+
+```bash
+#!/bin/bash
+
+# ==============================================================================
+# PRO-TIP: To safely stop a running infinite loop in your terminal,
+#          press Ctrl + C.
+# ==============================================================================
+
+# Print Pro-Tip to the terminal before entering the loop
+echo -e "\033[01;33m[PRO-TIP]\033[00m Press \033[01;31mCtrl + C\033[00m at any time to safely stop this loop.\n"
+
+while true; do                         # Loop forever
+    echo "Running..."                  # Output status message
+    sleep 2                            # Wait 2 seconds before next iteration
+done                               
+```
+
+**script name:** `interruptible_infinite_loop.sh`
+
+```bash
+#!/bin/bash
+
+# Function triggered when user presses Ctrl+C
+cleanup() {
+    echo -e "\n\033[01;32m[INFO] Loop stopped safely. Goodbye!\033[00m"
+    exit 0
+}
+
+# Trap SIGINT (Ctrl+C) and run the cleanup function
+trap cleanup SIGINT
+
+echo "Press Ctrl+C to exit."
+
+while true; do
+    echo "Running..."
+    sleep 2
+done
+```
+
 Repeated menu ke liye loop aur `case` ko combine karein:
+
+**script name:** `service_action_menu.sh`
 
 ```bash
 while true
@@ -442,6 +501,8 @@ Yahan:
 `case` statement normally selected branch ki last executed command ka status deta hai. Agar koi pattern match na ho aur default branch bhi na ho, status `0` hota hai.
 
 Clear behavior ke liye appropriate exit statuses explicitly use karein:
+
+**script name:** `case_exit_status_demo.sh`
 
 ```bash
 case "$answer" in
