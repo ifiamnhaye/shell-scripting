@@ -21,8 +21,8 @@ case "$answer" in
         n|N|no|NO|No)   # User chose No
 		echo "Skipped."
 	    ;;
-																		 *)   # Any other input
-                echo "Error: Invalid rsponse "
-            ;;
+		*)   # Any other input
+        echo "Error: Invalid rsponse "
+        ;;
 																
     esac #end case
