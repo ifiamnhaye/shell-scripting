@@ -18,7 +18,7 @@ case "$answer" in
 		        echo "$service_name is inactive." # not active print this statment 
                 fi
 	    ;;
-    n|N|no|NO|No)   # User chose No
+        n|N|no|NO|No)   # User chose No
 		echo "Skipped."
 	    ;;
 																		 *)   # Any other input
