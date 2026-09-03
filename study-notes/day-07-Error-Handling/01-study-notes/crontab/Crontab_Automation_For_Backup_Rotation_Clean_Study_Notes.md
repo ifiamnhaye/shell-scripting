@@ -4,7 +4,7 @@
 
 Automate the backup rotation script so that it runs automatically with `cron`.
 
-For classroom testing, use:
+For quick testing, use:
 
 ```cron
 * * * * *
@@ -294,7 +294,7 @@ Important:
 
 ---
 
-# 16. Classroom Demo Idea
+# 16. Quick Demo
 
 Use:
 
@@ -308,7 +308,7 @@ Then watch the backup directory:
 watch ls -lt /home/khalid/backup-project/backups
 ```
 
-Students can observe new ZIP files appearing every minute and the oldest file being removed after the retention limit is exceeded.
+New ZIP files appear every minute, and the oldest file is removed after the retention limit is exceeded.
 
 ---
 
@@ -522,7 +522,7 @@ Write output to log
 
 ---
 
-# Recommended Classroom Cron Entry
+# Recommended Testing Cron Entry
 
 ```cron
 * * * * * /home/khalid/backup-project/backup.sh /home/khalid/backup-project/data /home/khalid/backup-project/backups >> /home/khalid/backup-project/backup-cron.log 2>&1

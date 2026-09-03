@@ -4,7 +4,7 @@
 
 Backup rotation script ko `cron` ke zariye automatically run karwana.
 
-Classroom testing ke liye hum use karenge:
+Quick testing ke liye use karein:
 
 ```cron
 * * * * *
@@ -365,15 +365,15 @@ Important:
 
 ---
 
-# 16. Classroom Demo Idea
+# 16. Quick Demo
 
-Lecture ke liye:
+Quick demonstration ke liye:
 
 ```cron
 * * * * *
 ```
 
-bohat acha hai kyun ke students result quickly dekh sakte hain.
+bohat acha hai kyun ke result quickly nazar aata hai.
 
 Suggested demo:
 
@@ -506,7 +506,7 @@ means:
 
 # 21. Suggested Learning Progression
 
-Teaching ke liye:
+Suggested progression:
 
 ```text
 Level 1
@@ -662,7 +662,7 @@ Output log file mein
 
 ---
 
-# Recommended Classroom Cron Entry
+# Recommended Testing Cron Entry
 
 ```cron
 * * * * * /home/khalid/backup-project/backup.sh /home/khalid/backup-project/data /home/khalid/backup-project/backups >> /home/khalid/backup-project/backup-cron.log 2>&1
